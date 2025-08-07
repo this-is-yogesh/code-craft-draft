@@ -1,0 +1,224 @@
+
+
+.header-container {
+  position: relative;
+  z-index: 10;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(10, 10, 15,0.8);
+  backdrop-filter: blur(20px);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+}
+
+
+@media (min-width: 1024px) {
+  /* right now in big screen, it takes this */
+  .header-inner {
+    justify-content: space-between;
+
+  }
+
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
+.nav-left {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .nav-left {
+    display: flex;
+  }
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.logo-hover {
+  position: absolute;
+  inset: 0rem;
+  background: linear-gradient(to right, rgba(59, 130, 246, 0.2), rgba(168, 85, 247, 0.2));
+  border-radius: 0.5rem;
+  opacity: 0;
+  transition: all 0.5s ease;
+  filter: blur(10px);
+}
+
+.logo-link:hover .logo-hover {
+  opacity: 1;
+
+}
+
+.logo-icon {
+  position: relative;
+  background: linear-gradient(to bottom right, #1a1a2e, #0a0a0f);
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border 0.3s ease;
+}
+
+.logo-link:hover .logo-icon {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.logo-block-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #60a5fa;
+  transform: rotate(-6deg);
+  transition: transform 0.5s ease;
+}
+
+.logo-link:hover .logo-block-icon {
+  transform: rotate(0deg);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  background: linear-gradient(to right, #60a5fa, #93c5fd, #c084fc);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.logo-subtitle {
+  font-size: 0.75rem;
+  color: rgba(96, 165, 250, 0.6);
+  font-weight: 500;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(31, 41, 55, 0.5);
+  color: #d1d5db;
+  border: 1px solid #1f2937;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.nav-button:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.nav-button-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-button:hover .nav-button-bg {
+  opacity: 1;
+}
+
+.nav-icon {
+  width: 1rem;
+  height: 1rem;
+  z-index: 10;
+  transition: transform 0.3s ease;
+}
+
+.nav-button:hover .nav-icon {
+  transform: rotate(3deg);
+}
+
+.nav-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  z-index: 10;
+  transition: color 0.3s ease;
+}
+
+.nav-button:hover .nav-label {
+  color: white;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.selectors {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pro-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 1rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(to right, rgba(251, 191, 36, 0.1), rgba(249, 115, 22, 0.1));
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  transition: all 0.3s ease;
+}
+
+.pro-button:hover {
+  background: linear-gradient(to right, rgba(251, 191, 36, 0.2), rgba(249, 115, 22, 0.2));
+  border-color: rgba(251, 191, 36, 0.4);
+}
+
+.pro-icon {
+  width: 1rem;
+  height: 1rem;
+  color: #fbbf24;
+  transition: color 0.3s ease;
+}
+
+.pro-button:hover .pro-icon {
+  color: #fcd34d;
+}
+
+.pro-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(251, 191, 36, 0.9);
+  transition: color 0.3s ease;
+}
+
+.pro-button:hover .pro-label {
+  color: #fcd34d;
+}
+
+.profile-btn-wrapper {
+  padding-left: 0.75rem;
+  border-left: 1px solid #1f2937;
+}

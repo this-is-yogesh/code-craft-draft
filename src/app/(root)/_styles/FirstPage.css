@@ -1,0 +1,23 @@
+
+.container {
+  min-height: 100vh;
+}
+
+.content-wrapper {
+  max-width: 1800px; /* avoid to get too wide on large screens*/
+  margin-left: auto; /* centers element horizontally aligned in center*/
+  margin-right: auto;
+  padding: 1rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .grid-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}

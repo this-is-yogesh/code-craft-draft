@@ -60,10 +60,11 @@ function ProfilePage() {
   if (!user && isLoaded) return router.push("/");
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f]">
+    <div  style={{  minHeight: "100vh",
+                  backgroundColor: "#0a0a0f"}}>
       <NavigationHeader />
 
-      <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="max-w-7xl mx-auto px-4 py-2">
         {/* Profile Header */}
 
         {userStats && userData && (
