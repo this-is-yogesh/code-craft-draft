@@ -36,13 +36,15 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
     editor: null,
     executionResult: null,
 
-    getCode: () => get().editor?.getValue() || "",
+    getCode: function () {
+      return get().editor?.getValue() || "";
+    },
 
-    setEditor: (editor: Monaco) => {
+    setEditor: function (editor: Monaco) {
       const savedCode = localStorage.getItem(`editor-code-${get().language}`);
       if (savedCode) editor.setValue(savedCode);
 
-      set({ editor });
+      set({ editor: editor });
     },
 
     setTheme: (theme: string) => {
@@ -52,7 +54,7 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
 
     setFontSize: (fontSize: number) => {
       localStorage.setItem("editor-font-size", fontSize.toString());
-      set({ fontSize });
+      set({ fontSize: fontSize });
     },
 
     setLanguage: (language: string) => {
@@ -74,7 +76,7 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
     runCode: async () => {
       const { language, getCode } = get();
       const code = getCode();
-
+      console.log(language, "lang", code, "langCode");
       if (!code) {
         set({ error: "Please enter some code" });
         return;
@@ -102,7 +104,10 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
 
         // handle API-level erros
         if (data.message) {
-          set({ error: data.message, executionResult: { code, output: "", error: data.message } });
+          set({
+            error: data.message,
+            executionResult: { code, output: "", error: data.message },
+          });
           return;
         }
 
@@ -135,7 +140,14 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
 
         // if we get here, execution was successful
         const output = data.run.output;
-
+        console.log(
+          {
+            code,
+            output: output.trim(),
+            error: null,
+          },
+          "executionResultEditorStore"
+        );
         set({
           output: output.trim(),
           error: null,
@@ -158,4 +170,5 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
   };
 });
 
-export const getExecutionResult = () => useCodeEditorStore.getState().executionResult;
+export const getExecutionResult = () =>
+  useCodeEditorStore.getState().executionResult;

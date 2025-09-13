@@ -334,6 +334,32 @@ print("Even numbers: \\(evenNumbers)")
 let sum = numbers.reduce(0, +)
 print("Sum of numbers: \\(sum)")`,
   },
+  php: {
+    id: "php",
+    label: "PHP",
+    logoPath: "/php.png",
+    pistonRuntime: { language: "php", version: "8.2" },
+    monacoLanguage: "php",
+    defaultCode: `<?php
+// Create array
+$numbers = [1, 2, 3, 4, 5];
+
+// Print original numbers
+echo "Original numbers: " . implode(" ", $numbers) . "\\n";
+
+// Calculate squares
+$squares = array_map(fn($n) => $n * $n, $numbers);
+echo "Squared numbers: " . implode(" ", $squares) . "\\n";
+
+// Filter even numbers
+$evenNumbers = array_filter($numbers, fn($n) => $n % 2 === 0);
+echo "Even numbers: " . implode(" ", $evenNumbers) . "\\n";
+
+// Calculate sum
+$sum = array_sum($numbers);
+echo "Sum of numbers: $sum\\n";
+?>`,
+  },
 };
 
 export const THEMES: Theme[] = [
@@ -425,7 +451,7 @@ export const defineMonacoThemes = (monaco: Monaco) => {
     monaco.editor.defineTheme(themeName, {
       base: themeData.base,
       inherit: themeData.inherit,
-      rules: themeData.rules.map((rule) => ({
+      rules: themeData.rules.map(rule => ({
         ...rule,
         foreground: rule.foreground,
       })),

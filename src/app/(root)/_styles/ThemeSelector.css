@@ -1,0 +1,180 @@
+.theme-selector {
+  position: relative;
+  z-index: 10;
+}
+
+.theme-toggle {
+  width: 12rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background-color: rgba(30, 30, 46, 0.8);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(75, 85, 99, 0.5);
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-toggle:hover {
+  background-color: #262637;
+  border-color: #4b5563;
+}
+
+.hover-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(59, 130, 246, 0.05), rgba(168, 85, 247, 0.05));
+  border-radius: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.theme-toggle:hover .hover-bg {
+  opacity: 1;
+}
+
+.palette-icon {
+  width: 1rem;
+  height: 1rem;
+  color: #9ca3af;
+  transition: color 0.2s;
+}
+
+.theme-toggle:hover .palette-icon {
+  color: #d1d5db;
+}
+
+.theme-label {
+  color: #d1d5db;
+  min-width: 80px;
+  text-align: left;
+  transition: color 0.2s;
+}
+
+.theme-toggle:hover .theme-label {
+  color: #ffffff;
+}
+
+.theme-color-indicator {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+  border: 1px solid #4b5563;
+  transition: border-color 0.2s;
+}
+
+.theme-toggle:hover .theme-color-indicator {
+  border-color: #6b7280;
+}
+
+/* Dropdown */
+.theme-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  min-width: 240px;
+  width: 100%;
+  background-color: rgba(30, 30, 46, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 0.75rem;
+  border: 1px solid #313244;
+  box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem 0;
+  z-index: 50;
+}
+
+.dropdown-header {
+  padding: 0 0.5rem 0.5rem 0.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(75, 85, 99, 0.5);
+}
+
+.dropdown-header p {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #9ca3af;
+  padding: 0 0.5rem;
+}
+
+.dropdown-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  color: #d1d5db;
+  transition: all 0.2s ease-in-out;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.dropdown-item:hover {
+  background-color: #262637;
+}
+
+.dropdown-item.selected {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #60a5fa;
+}
+
+.dropdown-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(59, 130, 246, 0.05), rgba(168, 85, 247, 0.05));
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.dropdown-item:hover .dropdown-bg {
+  opacity: 1;
+}
+
+.dropdown-icon {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  background-color: rgba(31, 41, 55, 0.5);
+  color: #9ca3af;
+  transition: all 0.2s ease-in-out;
+}
+
+.dropdown-icon.selected {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #60a5fa;
+}
+
+.dropdown-item:hover .dropdown-icon {
+  transform: scale(1.1);
+}
+
+.dropdown-label {
+  flex: 1;
+  text-align: left;
+  transition: color 0.2s;
+}
+
+.dropdown-item:hover .dropdown-label {
+  color: #ffffff;
+}
+
+.active-border {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  border-radius: 0.5rem;
+}
+
+/* Lucide Icon Size Class */
+.icon {
+  width: 1rem;
+  height: 1rem;
+}

@@ -11,19 +11,22 @@ export const saveExecution = mutation({
     error: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    //gives use info about the current logged in user
+    console.log('saveExecution')
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) throw new ConvexError("Not authenticated");
 
     // check pro status
+    //first() just gets one record
     const user = await ctx.db
       .query("users")
       .withIndex("by_user_id")
-      .filter((q) => q.eq(q.field("userId"), identity.subject))
+      .filter(q => q.eq(q.field("userId"), identity.subject))
       .first();
 
-    if (!user?.isPro && args.language !== "javascript") {
-      throw new ConvexError("Pro subscription required to use this language");
-    }
+    // if (!user?.isPro && args.language !== "javascript") {
+    //   throw new ConvexError("Pro subscription required to use this language");
+    // }
 
     await ctx.db.insert("codeExecutions", {
       ...args,
@@ -41,7 +44,7 @@ export const getUserExecutions = query({
     return await ctx.db
       .query("codeExecutions")
       .withIndex("by_user_id")
-      .filter((q) => q.eq(q.field("userId"), args.userId))
+      .filter(q => q.eq(q.field("userId"), args.userId))
       .order("desc")
       .paginate(args.paginationOpts);
   },
@@ -53,19 +56,21 @@ export const getUserStats = query({
     const executions = await ctx.db
       .query("codeExecutions")
       .withIndex("by_user_id")
-      .filter((q) => q.eq(q.field("userId"), args.userId))
+      .filter(q => q.eq(q.field("userId"), args.userId))
       .collect();
 
     // Get starred snippets
     const starredSnippets = await ctx.db
       .query("stars")
       .withIndex("by_user_id")
-      .filter((q) => q.eq(q.field("userId"), args.userId))
+      .filter(q => q.eq(q.field("userId"), args.userId))
       .collect();
 
     // Get all starred snippet details to analyze languages
-    const snippetIds = starredSnippets.map((star) => star.snippetId);
-    const snippetDetails = await Promise.all(snippetIds.map((id) => ctx.db.get(id)));
+    const snippetIds = starredSnippets.map(star => star.snippetId);
+    const snippetDetails = await Promise.all(
+      snippetIds.map(id => ctx.db.get(id))
+    );
 
     // Calculate most starred language
     const starredLanguages = snippetDetails.filter(Boolean).reduce(
@@ -79,11 +84,12 @@ export const getUserStats = query({
     );
 
     const mostStarredLanguage =
-      Object.entries(starredLanguages).sort(([, a], [, b]) => b - a)[0]?.[0] ?? "N/A";
+      Object.entries(starredLanguages).sort(([, a], [, b]) => b - a)[0]?.[0] ??
+      "N/A";
 
     // Calculate execution stats
     const last24Hours = executions.filter(
-      (e) => e._creationTime > Date.now() - 24 * 60 * 60 * 1000
+      e => e._creationTime > Date.now() - 24 * 60 * 60 * 1000
     ).length;
 
     const languageStats = executions.reduce(
@@ -96,7 +102,9 @@ export const getUserStats = query({
 
     const languages = Object.keys(languageStats);
     const favoriteLanguage = languages.length
-      ? languages.reduce((a, b) => (languageStats[a] > languageStats[b] ? a : b))
+      ? languages.reduce((a, b) =>
+          languageStats[a] > languageStats[b] ? a : b
+        )
       : "N/A";
 
     return {
